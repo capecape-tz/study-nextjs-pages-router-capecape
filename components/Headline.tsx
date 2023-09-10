@@ -6,7 +6,7 @@ type Props = {
   description?: string;
 };
 
-export default function Headline(props: Props) {
+export function Headline(props: Props) {
   console.log(props);
   return (
     <>
