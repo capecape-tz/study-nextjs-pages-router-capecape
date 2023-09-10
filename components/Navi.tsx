@@ -1,27 +1,34 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const ACTIVE_ROUTE = "text-gray-100 bg-gray-700";
-const INACTIVE_ROUTE = "text-gray-500 hover:text-gray-300 hover:bg-gray-700";
+// const ACTIVE_ROUTE = "";
+// const INACTIVE_ROUTE = "";
+
+const ACTIVE_ROUTE = "px-4 py-4 text-gray-100 bg-gray-700";
+const INACTIVE_ROUTE =
+  "px-4 py-4 text-gray-500 hover:text-gray-300 hover:bg-gray-700";
 
 export function Navi() {
   const pathname = usePathname();
   return (
-    <ul>
-      <li className={pathname === "/" ? ACTIVE_ROUTE : INACTIVE_ROUTE}>
-        <Link href="/">トップへ移動する</Link>
-      </li>
-      <li className={pathname === "/about" ? ACTIVE_ROUTE : INACTIVE_ROUTE}>
-        <Link href="/about">aboutへ移動する</Link>
-      </li>
+    <ul className="bg-red-700 border-8 border-red-900">
+      <Link href="/">
+        <li className={pathname === "/" ? ACTIVE_ROUTE : INACTIVE_ROUTE}>
+          トップへ移動する
+        </li>
+      </Link>
 
-      <li
-        className={
-          pathname === "/aboutPropsChildren" ? ACTIVE_ROUTE : INACTIVE_ROUTE
-        }
-      >
-        <Link href="/aboutPropsChildren">about2へ移動する</Link>
-      </li>
+      <Link href="/about">
+        <li className={pathname === "/about" ? ACTIVE_ROUTE : INACTIVE_ROUTE}>
+          aboutへ移動する
+        </li>
+      </Link>
+
+      <Link href="/about2">
+        <li className={pathname === "/about2" ? ACTIVE_ROUTE : INACTIVE_ROUTE}>
+          aboutの2へ移動する
+        </li>
+      </Link>
     </ul>
   );
 }

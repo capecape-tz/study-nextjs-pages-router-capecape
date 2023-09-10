@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { ReactElement } from "react";
 import { PropsWithChildren } from "react";
 
 type Props = {
