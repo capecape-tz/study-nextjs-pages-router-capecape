@@ -3,16 +3,21 @@ import { Inter } from "next/font/google";
 import { Footer } from "@/components/Footer";
 import { Links } from "@/components/Links";
 import { Headline } from "@/components/Headline";
-import { Main } from "@/components/Main";
 import { ReactElement } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Home() {
+type Props = {
+  page: string;
+};
+
+export function Main(props: Props) {
   const page: string = "index";
 
   const codeComp: ReactElement = (
-    <code className="font-mono font-bold">インデックスはpages/{page}</code>
+    <code className="font-mono font-bold">
+      インデックスはpages/{props.page}
+    </code>
   );
   return (
     <main
@@ -20,13 +25,12 @@ export default function Home() {
     >
       <Headline
         title="トップページ"
-        page="index"
+        page={props.page}
         codeComp={codeComp}
         onClick={() => alert("テストです")}
       ></Headline>
       <Links />
       <Footer></Footer>
-      <Main page="index" />
     </main>
   );
 }
