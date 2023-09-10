@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { ReactElement } from "react";
+import { Navi } from "./Navi";
 
 type Props = {
   title: string;
@@ -14,6 +15,7 @@ export function Headline(props: Props) {
   console.log(props);
   return (
     <>
+      <Navi></Navi>
       <button
         onClick={props.onClick}
         className="flex bg-cyan-700 py-2 px-4 rounded-md text-white hover:bg-cyan-900"

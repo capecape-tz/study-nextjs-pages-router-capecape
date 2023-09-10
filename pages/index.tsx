@@ -26,7 +26,7 @@ export default function Home() {
       ></Headline>
       <Links />
       <Footer></Footer>
-      <Main page="index" />
+      {/* <Main page="index" /> */}
     </main>
   );
 }
