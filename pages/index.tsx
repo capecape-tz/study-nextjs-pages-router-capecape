@@ -31,6 +31,13 @@ export default function Home() {
       <button onClick={handleClick} className="py-2 px-4">
         onClickテストのボタン
       </button>
+      <button
+        onClick={function (e) {
+          window.location.reload();
+        }}
+      >
+        リロードする！
+      </button>
       <Headline
         title="トップページ"
         page="index"
