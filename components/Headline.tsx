@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { ReactElement } from "react";
 import { Navi } from "./Navi";
+import { useState } from "react";
 
 type Props = {
   title: string;
@@ -13,6 +14,37 @@ type Props = {
 
 export function Headline(props: Props) {
   console.log(props);
+
+  let fooFail = 0;
+  const handleStateFail = () => {
+    fooFail = fooFail + 1;
+    console.log(foo);
+  };
+
+  const [foo, setFoo] = useState(0);
+  const handleState = () => {
+    setFoo((foo) => foo + 1);
+    setFoo((foo) => foo + 1);
+    setFoo((foo) => foo + 1);
+
+    /*
+    setFoo(foo + 1);は数値を直接代入しているのと同じようになってしまう。
+    繰り返し実行する場合、
+    setFoo(foo + 1);
+    setFoo(foo + 1);
+    setFoo(foo + 1);
+    を行った場合では、3回実行されてfoo=0からfoo=3になりそうだが、
+    実際にはそうならない。foo=1のまま。
+
+    setFoo((foo) => foo + 1);であれば、引数に前の状態を渡しても行えるので
+    繰り返し実行する場合、
+    setFoo((foo) => foo + 1);
+    setFoo((foo) => foo + 1);
+    setFoo((foo) => foo + 1);
+    で、期待通りfoo=3になる。
+    */
+  };
+
   return (
     <>
       <Navi></Navi>
@@ -22,6 +54,21 @@ export function Headline(props: Props) {
       >
         ボタン
       </button>
+
+      <button
+        onClick={handleStateFail}
+        className="flex bg-cyan-700 py-2 px-4 rounded-md text-white hover:bg-cyan-900"
+      >
+        インクリメント 失敗例
+      </button>
+      <h1>foo(fail) is {fooFail}</h1>
+      <button
+        onClick={handleState}
+        className="flex bg-cyan-700 py-2 px-4 rounded-md text-white hover:bg-cyan-900"
+      >
+        インクリメント
+      </button>
+      <h1>foo is {foo}</h1>
       <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
         <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
           {props.title}&nbsp; {props.codeComp}
