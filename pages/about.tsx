@@ -55,6 +55,7 @@ export default function About(props: Props) {
         }}
       />
       <Links />
+      <button onClick={() => window.location.reload()}>Refresh</button>
       <Footer></Footer>
     </main>
   );

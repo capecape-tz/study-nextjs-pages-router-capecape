@@ -57,6 +57,7 @@ export default function Home(props: Props) {
         onClick={() => alert("テストです")}
       ></Headline>
       <Links />
+      <button onClick={() => window.location.reload()}>Refresh</button>
       <Footer></Footer>
     </main>
   );
