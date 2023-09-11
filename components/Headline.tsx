@@ -1,7 +1,5 @@
-import Image from "next/image";
-import { ReactElement } from "react";
 import { Navi } from "./Navi";
-import { useState, ReactNode } from "react";
+import { ReactNode } from "react";
 
 type Props = {
   page: string;

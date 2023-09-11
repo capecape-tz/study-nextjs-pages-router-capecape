@@ -1,5 +1,3 @@
-import { useCallback, useState } from "react";
-
 type Item = {
   id: number;
   itemHref: string;
