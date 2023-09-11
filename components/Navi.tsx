@@ -23,12 +23,6 @@ export function Navi() {
           aboutへ移動する
         </li>
       </Link>
-
-      <Link href="/about2">
-        <li className={pathname === "/about2" ? ACTIVE_ROUTE : INACTIVE_ROUTE}>
-          aboutの2へ移動する
-        </li>
-      </Link>
     </ul>
   );
 }
