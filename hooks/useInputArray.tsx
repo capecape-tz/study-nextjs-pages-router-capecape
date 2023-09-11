@@ -18,6 +18,10 @@ export const useInputArray = () => {
         alert("同じ要素がすでに存在している");
         return prevArray;
       }
+      if (text.trim().length === 0) {
+        alert("入力なしは追加できません");
+        return prevArray;
+      }
       return [text, ...prevArray];
     });
   }, [text]);
