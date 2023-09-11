@@ -47,6 +47,13 @@ export default function Home() {
     };
   }, []);
 
+  const [myArray, setMyArray] = useState([1, 2, 3]);
+  const addMyArray = useCallback(() => {
+    setMyArray((prevMyArray) => {
+      return [...prevMyArray, prevMyArray.length + 1];
+    });
+  }, []);
+
   return (
     <main
       className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
@@ -69,6 +76,13 @@ export default function Home() {
         pepeを{isShow ? <div>非表示に</div> : <div>表示</div>}する
       </button>
       {isShow ? <div>pepe</div> : null}
+      <button onClick={addMyArray}>myArray更新</button>
+      <ul>
+        {myArray.map((item) => (
+          <li key={item}>・{item}</li>
+        ))}
+      </ul>
+
       <Headline
         title="トップページ"
         page="index"
