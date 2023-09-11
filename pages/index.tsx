@@ -4,7 +4,7 @@ import { Footer } from "@/components/Footer";
 import { Links } from "@/components/Links";
 import { Headline } from "@/components/Headline";
 // import { Main } from "@/components/Main";
-import { MouseEvent, useCallback, useEffect } from "react";
+import { MouseEvent, useState, useCallback, useEffect } from "react";
 
 import { MouseEventHandler, ReactElement } from "react";
 
@@ -12,10 +12,18 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   const foo = "foo";
+
+  const [cape, setCape] = useState("cape");
+  const addCape = useCallback(() => {
+    if (cape.length < 35) {
+      setCape((cape) => cape + " cape");
+    }
+  }, [cape]);
+
   // const handleClick = (e: any) => {
   //   console.log(foo);
   // };
-  const handleClick = useCallback((e: any) => {
+  const handleClick = useCallback(() => {
     console.log(foo, "callback");
   }, []);
 
@@ -50,6 +58,7 @@ export default function Home() {
       >
         リロードする！
       </button>
+      <button onClick={addCape}>{cape}</button>
       <Headline
         title="トップページ"
         page="index"
