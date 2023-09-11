@@ -3,11 +3,12 @@ import type { AppProps } from "next/app";
 
 import { useCounter } from "@/hooks/useCounter";
 import { useInputArray } from "@/hooks/useInputArray";
-import { useBgLightYellow } from "@/hooks/useBgLightYellow";
+import { useBgColor } from "@/hooks/useBgLightColor";
 
 export default function App({ Component, pageProps }: AppProps) {
   const counter = useCounter();
   const inputArray = useInputArray();
-  useBgLightYellow();
+  useBgColor();
+
   return <Component {...pageProps} {...counter} {...inputArray} />;
 }
