@@ -8,6 +8,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 type Props = {
   count: number;
+  doubleCount: number;
   isShow: boolean;
   handleClick: () => void;
   handleDisplay: () => void;

@@ -7,6 +7,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 type Props = {
   count: number;
+  doubleCount: number;
   isShow: boolean;
   handleClick: () => void;
   handleDisplay: () => void;
@@ -18,7 +19,7 @@ type Props = {
 };
 
 export default function About(props: Props) {
-  const { count, isShow, handleClick, handleDisplay } = props;
+  const { count, doubleCount, isShow, handleClick, handleDisplay } = props;
   const { text, array, handleChange, handleAdd } = props;
 
   return (
@@ -26,7 +27,7 @@ export default function About(props: Props) {
       className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
     >
       <button onClick={handleClick}>count:{count}</button>
-      <h1>{count}</h1>
+      <h1>{doubleCount}</h1>
       <button onClick={handleDisplay}>
         display:{isShow ? <>表示</> : <>非表示</>}
       </button>
