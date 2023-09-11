@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useReducer, useEffect, useCallback } from "react";
 
 type Post = {
   userId: string;
@@ -13,15 +13,43 @@ type State = {
   error: string | null;
 };
 
+type Action = {
+  type: "end" | "error" | null;
+  data: Post[];
+  error: string | null;
+};
+
+const initialState: State = {
+  data: [],
+  loading: true,
+  error: null,
+};
+
+const reducer = (state: State, action: Action) => {
+  switch (action.type) {
+    case "end":
+      return {
+        ...state,
+        data: action.data,
+        loading: false,
+      };
+    case "error":
+      return {
+        ...state,
+        error: action.error,
+        loading: false,
+      };
+    default: {
+      throw new Error("action typeがありませんでした");
+    }
+  }
+};
+
 export default function Posts() {
   // const [posts, setPosts] = useState<Post[]>([]);
   // const [loading, setLoading] = useState(true);
   // const [error, setError] = useState<string | null>(null);
-  const [state, setState] = useState<State>({
-    data: [],
-    loading: true,
-    error: null,
-  });
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   const getPosts = useCallback(async () => {
     try {
@@ -30,24 +58,13 @@ export default function Posts() {
         throw new Error();
       }
       const json = await res.json();
-      setState((prevState) => {
-        return {
-          ...prevState,
-          data: json,
-          loading: false,
-        };
-      });
+      dispatch({ type: "end", data: json, error: null });
     } catch (e) {
-      setState((prevState) => {
-        return {
-          ...prevState,
-          error: "エラーが発生したため、データの取得に失敗しました。",
-          loading: false,
-        };
+      dispatch({
+        type: "error",
+        data: [],
+        error: "エラーが発生したため、データの取得に失敗しました。",
       });
-      // setError("エラーが発生したため、データの取得に失敗しました。");
-      //} finally {
-      // setLoading(false);
     }
   }, []);
 
