@@ -32,11 +32,22 @@ type Post = {
 
 export default function Home(props: Props) {
   const [posts, setPosts] = useState<Post[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   const getPosts = useCallback(async () => {
-    const res = await fetch("https://jsonplaceholder.typicode.com/posts");
-    const json = await res.json();
-    setPosts(json);
+    try {
+      const res = await fetch("https://jsonplaceholder.typicode.com/posts");
+      if (!res.ok) {
+        throw new Error();
+      }
+      const json = await res.json();
+      setPosts(json);
+    } catch (e) {
+      setError("エラーが発生したため、データの取得に失敗しました。");
+    } finally {
+      setLoading(false);
+    }
   }, []);
 
   useEffect(() => {
@@ -49,7 +60,11 @@ export default function Home(props: Props) {
         <title>Index Page</title>
       </Head>
       <Navi></Navi>
-      {posts.length > 0 ? (
+      {loading ? (
+        <div>ローディング中です</div>
+      ) : error ? (
+        <div>{error}</div>
+      ) : posts.length > 0 ? (
         <ol>
           {posts.map((post, pIndex) => {
             return (
@@ -59,7 +74,9 @@ export default function Home(props: Props) {
             );
           })}
         </ol>
-      ) : null}
+      ) : (
+        <div>データは空です。</div>
+      )}
     </div>
   );
 }
