@@ -30,6 +30,8 @@ export default function Posts() {
   useEffect(() => {
     getPosts();
   }, [getPosts]);
+
+  console.log("foo");
   if (loading) {
     return <div>ローディング中です</div>;
   }
