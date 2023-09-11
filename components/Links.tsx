@@ -1,6 +1,4 @@
-import Image from "next/image";
-import { Inter } from "next/font/google";
-import { List } from "postcss/lib/list";
+import { useCallback, useState } from "react";
 
 type Item = {
   id: number;
@@ -9,7 +7,7 @@ type Item = {
   itemDescription: string;
 };
 
-const items: Array<Item> = [
+const INIT_ITEMS: Array<Item> = [
   {
     id: 0,
     itemHref:
@@ -44,11 +42,18 @@ const items: Array<Item> = [
 ];
 
 export function Links() {
-  // console.log(items);
+  const [items, setItems] = useState<Item[]>(INIT_ITEMS);
+
+  const handleReduce = useCallback(() => {
+    setItems((items) => {
+      return items.filter((item, index) => 0 !== index);
+    });
+  }, []);
 
   return (
     <>
       <div>
+        <button onClick={handleReduce}>減らす</button>
         {items.map((item) => {
           return (
             <div key={item.itemHref}>
