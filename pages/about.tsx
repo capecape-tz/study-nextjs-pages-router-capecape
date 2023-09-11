@@ -3,23 +3,29 @@ import { Footer } from "@/components/Footer";
 import { Links } from "@/components/Links";
 import { Headline } from "@/components/Headline";
 
-import { ReactElement } from "react";
+import { ReactElement, ReactNode } from "react";
 const inter = Inter({ subsets: ["latin"] });
 
-import { useCounter } from "@/hooks/useCounter";
-import { useInputArray } from "@/hooks/useInputArray";
-import { useBgLightYellow } from "@/hooks/useBgLightYellow";
+type Props = {
+  count: number;
+  isShow: boolean;
+  handleClick: () => void;
+  handleDisplay: () => void;
+  text: string;
+  array: string[];
+  handleChange: (e: any) => void;
+  handleAdd: () => void;
+  children: ReactNode;
+};
 
-export default function About() {
+export default function About(props: Props) {
   const page: string = "about";
 
   const codeComp: ReactElement = (
     <code className="font-mono font-bold">アバウトはpages/{page}</code>
   );
-
-  const { count, isShow, handleClick, handleDisplay } = useCounter();
-  const { text, array, handleChange, handleAdd } = useInputArray();
-  useBgLightYellow();
+  const { count, isShow, handleClick, handleDisplay } = props;
+  const { text, array, handleChange, handleAdd } = props;
 
   return (
     <main
