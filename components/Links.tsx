@@ -7,53 +7,17 @@ type Item = {
   itemDescription: string;
 };
 
-const INIT_ITEMS: Array<Item> = [
-  {
-    id: 0,
-    itemHref:
-      "https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app",
-    itemTitle: "ドキュメント!  ",
-    itemDescription: "ドキュメントです!!",
-  },
-  {
-    id: 1,
-    itemHref:
-      "https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app",
-    itemTitle: "学習 ",
-    itemDescription:
-      "Learn about Next.js in an interactive course with&nbsp;quizzes!",
-  },
-  {
-    id: 2,
-    itemHref:
-      "https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app",
-    itemTitle: "Templates",
-    itemDescription:
-      "Discover and deploy boilerplate example Next.js&nbsp;projects.",
-  },
-  {
-    id: 3,
-    itemHref:
-      "https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app",
-    itemTitle: "Deploy ",
-    itemDescription:
-      "Instantly deploy your Next.js site to a shareable URL with Vercel.",
-  },
-];
+type Props = {
+  items: Item[];
+  handleReduce?: () => void;
+};
 
-export function Links() {
-  const [items, setItems] = useState<Item[]>(INIT_ITEMS);
-
-  const handleReduce = useCallback(() => {
-    setItems((items) => {
-      return items.filter((item, index) => 0 !== index);
-    });
-  }, []);
-
+export function Links(props: Props) {
+  const { items, handleReduce } = props;
   return (
     <>
       <div>
-        <button onClick={handleReduce}>減らす</button>
+        {/* <button onClick={handleReduce}>減らす(Linkコンポーネント)</button> */}
         {items.map((item) => {
           return (
             <div key={item.itemHref}>

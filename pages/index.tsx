@@ -1,10 +1,6 @@
-import Image from "next/image";
 import { Inter } from "next/font/google";
 import { Footer } from "@/components/Footer";
-import { Links } from "@/components/Links";
-import { Headline } from "@/components/Headline";
-// import { Main } from "@/components/Main";
-import { useState, useCallback, useEffect } from "react";
+import { Main } from "@/components/Main";
 
 import { ReactElement, ReactNode } from "react";
 
@@ -19,16 +15,11 @@ type Props = {
   array: string[];
   handleChange: (e: any) => void;
   handleAdd: () => void;
+  page: string;
   children: ReactNode;
 };
 
 export default function Home(props: Props) {
-  const page: string = "about";
-
-  const codeComp: ReactElement = (
-    <code className="font-mono font-bold">インデックスはpages/{page}</code>
-  );
-
   const { count, isShow, handleClick, handleDisplay } = props;
   const { text, array, handleChange, handleAdd } = props;
 
@@ -50,13 +41,7 @@ export default function Home(props: Props) {
         })}
       </ul>
 
-      <Headline
-        title="トップページ"
-        page="index"
-        codeComp={codeComp}
-        onClick={() => alert("テストです")}
-      ></Headline>
-      <Links />
+      <Main page="index"></Main>
       <button onClick={() => window.location.reload()}>Refresh</button>
       <Footer></Footer>
     </main>

@@ -1,9 +1,8 @@
 import { Inter } from "next/font/google";
 import { Footer } from "@/components/Footer";
-import { Links } from "@/components/Links";
-import { Headline } from "@/components/Headline";
+import { Main } from "@/components/Main";
 
-import { ReactElement, ReactNode } from "react";
+import { ReactElement, ReactNode, useState, useCallback } from "react";
 const inter = Inter({ subsets: ["latin"] });
 
 type Props = {
@@ -19,11 +18,6 @@ type Props = {
 };
 
 export default function About(props: Props) {
-  const page: string = "about";
-
-  const codeComp: ReactElement = (
-    <code className="font-mono font-bold">アバウトはpages/{page}</code>
-  );
   const { count, isShow, handleClick, handleDisplay } = props;
   const { text, array, handleChange, handleAdd } = props;
 
@@ -45,16 +39,7 @@ export default function About(props: Props) {
         })}
       </ul>
 
-      <Headline
-        title="アバウトページ"
-        page={page}
-        description="アバウトページです。"
-        codeComp={codeComp}
-        onClick={(): void => {
-          console.log("testです");
-        }}
-      />
-      <Links />
+      <Main page="about"></Main>
       <button onClick={() => window.location.reload()}>Refresh</button>
       <Footer></Footer>
     </main>
