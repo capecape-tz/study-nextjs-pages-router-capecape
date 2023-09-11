@@ -20,6 +20,9 @@ export default function Home() {
     }
   }, [cape]);
 
+  const [isShow, setIsShow] = useState(true);
+  const toggleShow = useCallback(() => setIsShow((isShow) => !isShow), []);
+
   // const handleClick = (e: any) => {
   //   console.log(foo);
   // };
@@ -59,6 +62,13 @@ export default function Home() {
         リロードする！
       </button>
       <button onClick={addCape}>{cape}</button>
+      <button
+        className="flex bg-cyan-700 py-2 px-4 rounded-md text-white hover:bg-cyan-900"
+        onClick={toggleShow}
+      >
+        pepeを{isShow ? <div>非表示に</div> : <div>表示</div>}する
+      </button>
+      {isShow ? <div>pepe</div> : null}
       <Headline
         title="トップページ"
         page="index"
