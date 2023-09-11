@@ -1,8 +1,11 @@
 import { Inter } from "next/font/google";
 import { Footer } from "@/components/Footer";
 import { Main } from "@/components/Main";
+import { Navi } from "@/components/Navi";
 
-import { ReactNode } from "react";
+import { useState, useEffect, useCallback, ReactNode } from "react";
+import Head from "next/head";
+import { resolveAny } from "dns/promises";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,31 +23,43 @@ type Props = {
   children: ReactNode;
 };
 
+type Post = {
+  userId: string;
+  id: string;
+  title: string;
+  body: string;
+};
+
 export default function Home(props: Props) {
-  const { count, isShow, handleClick, handleDisplay } = props;
-  const { text, array, handleChange, handleAdd } = props;
+  const [posts, setPosts] = useState<Post[]>([]);
+
+  const getPosts = useCallback(async () => {
+    const res = await fetch("https://jsonplaceholder.typicode.com/posts");
+    const json = await res.json();
+    setPosts(json);
+  }, []);
+
+  useEffect(() => {
+    getPosts();
+  }, [getPosts]);
 
   return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
-    >
-      <button onClick={handleClick}>count:{count}</button>
-      <h1>{count}</h1>
-      <button onClick={handleDisplay}>
-        display:{isShow ? <>表示</> : <>非表示</>}
-      </button>
-      {isShow ? <div>OK:{count}</div> : null}
-      <input type="text" value={text} onChange={handleChange}></input>
-      <button onClick={handleAdd}> addする</button>
-      <ul>
-        {array.map((item) => {
-          return <ol key={item}>{item}</ol>;
-        })}
-      </ul>
-
-      <Main page="index"></Main>
-      <button onClick={() => window.location.reload()}>Refresh</button>
-      <Footer></Footer>
-    </main>
+    <div>
+      <Head>
+        <title>Index Page</title>
+      </Head>
+      <Navi></Navi>
+      {posts.length > 0 ? (
+        <ol>
+          {posts.map((post, pIndex) => {
+            return (
+              <li key={post.id}>
+                {post.id}:{post.title}
+              </li>
+            );
+          })}
+        </ol>
+      ) : null}
+    </div>
   );
 }
