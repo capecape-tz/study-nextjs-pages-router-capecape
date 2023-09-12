@@ -1,6 +1,4 @@
 import { Inter } from "next/font/google";
-import { Links } from "@/components/Links";
-import { Headline } from "@/components/Headline";
 import { ReactNode, useState, useCallback } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -61,10 +59,6 @@ export function Main(props: Props) {
 
   return (
     <main className={`flex  flex-col p-4 ${inter.className}`}>
-      <Headline page={props.page} handleReduce={handleReduce}>
-        <code className="flex flex-col  p-4">{items.length}</code>
-      </Headline>
-      <Links items={items} handleReduce={handleReduce} />
       <div>アイテムの数：{items.length}</div>
     </main>
   );

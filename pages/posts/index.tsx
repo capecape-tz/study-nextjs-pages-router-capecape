@@ -1,5 +1,5 @@
 import { Inter } from "next/font/google";
-import { Navi } from "@/components/Navi";
+import { Header } from "@/components/Header";
 
 import { ReactNode } from "react";
 import Head from "next/head";
@@ -27,7 +27,7 @@ export default function Home(props: Props) {
       <Head>
         <title>Index Page</title>
       </Head>
-      <Navi></Navi>
+      <Header></Header>
       <Posts></Posts>
     </div>
   );

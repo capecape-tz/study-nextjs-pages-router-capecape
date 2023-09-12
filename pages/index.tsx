@@ -1,6 +1,6 @@
 import { Inter } from "next/font/google";
-import { Footer } from "@/components/Footer";
 import { Main } from "@/components/Main";
+import { Header } from "@/components/Header";
 
 import { ReactNode } from "react";
 const inter = Inter({ subsets: ["latin"] });
@@ -20,13 +20,11 @@ type Props = {
 
 export default function Index(props: Props) {
   return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-4 ${inter.className}`}
-    >
+    <div>
+      <Header></Header>
       <h1>Next.jsで学ぶ</h1>
       <Main page="about"></Main>
       <button onClick={() => window.location.reload()}>Refresh</button>
-      <Footer></Footer>
-    </main>
+    </div>
   );
 }
