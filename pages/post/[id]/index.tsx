@@ -1,18 +1,11 @@
 import { Navi } from "@/components/Navi";
-
-import Head from "next/head";
-import { useRouter } from "next/router";
+import Post from "@/components/Post";
 
 export default function PostId() {
-  const router = useRouter();
-  //console.log(router.query);
   return (
     <div>
-      <Head>
-        <title>Index Page</title>
-      </Head>
       <Navi></Navi>
-      <div>test{router.query.id}</div>
+      <Post></Post>
     </div>
   );
 }
