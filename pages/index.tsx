@@ -20,12 +20,11 @@ type Props = {
 
 export default function Index(props: Props) {
   return (
-    <div>
+    <>
       <Header></Header>
       <h1 className="text-xl">Next.jsで学ぶReact講座</h1>
       <p>JSONPlaceholderのAPIをいろいろたたいてみるよ！</p>
       <RefreshButton></RefreshButton>
-      {/* <Main page="about"></Main> */}
-    </div>
+    </>
   );
 }

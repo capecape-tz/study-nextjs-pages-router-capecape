@@ -18,7 +18,7 @@ const NAV_ITEMS: NavItem[] = [
   {
     href: "/posts",
     label: "Posts",
-    naviText: "Postへ移動する",
+    naviText: "Post一覧",
   },
 ];
 
@@ -35,7 +35,7 @@ export function Header() {
             <Link href={item.href} key={item.href}>
               <div
                 className={
-                  pathname === item.href ? ACTIVE_ROUTE : INACTIVE_ROUTE
+                  item.href === pathname ? ACTIVE_ROUTE : INACTIVE_ROUTE
                 }
               >
                 {item.naviText}

@@ -1,4 +1,3 @@
-import Head from "next/head";
 import { usePost } from "@/hooks/usePost";
 
 export default function Post() {
@@ -19,9 +18,6 @@ export default function Post() {
 
   return (
     <div>
-      <Head>
-        <title>post?.title</title>
-      </Head>
       <h1>
         <div>{post?.id}</div>
 
