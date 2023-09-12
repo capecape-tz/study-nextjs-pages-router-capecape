@@ -1,6 +1,6 @@
 import { Inter } from "next/font/google";
-import { Main } from "@/components/Main";
 import { Header } from "@/components/Header";
+import { RefreshButton } from "@/components/RefreshButton";
 
 import { ReactNode } from "react";
 const inter = Inter({ subsets: ["latin"] });
@@ -22,9 +22,10 @@ export default function Index(props: Props) {
   return (
     <div>
       <Header></Header>
-      <h1>Next.jsで学ぶ</h1>
-      <Main page="about"></Main>
-      <button onClick={() => window.location.reload()}>Refresh</button>
+      <h1 className="text-xl">Next.jsで学ぶReact講座</h1>
+      <p>JSONPlaceholderのAPIをいろいろたたいてみるよ！</p>
+      <RefreshButton></RefreshButton>
+      {/* <Main page="about"></Main> */}
     </div>
   );
 }

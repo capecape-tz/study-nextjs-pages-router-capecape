@@ -22,23 +22,27 @@ const NAV_ITEMS: NavItem[] = [
   },
 ];
 
-const ACTIVE_ROUTE = "px-4 py-4 text-gray-300";
-const INACTIVE_ROUTE = "px-4 py-4 text-gray-500 hover:text-blue-800 font-bold";
+const ACTIVE_ROUTE = "px-4 py-2 text-gray-300";
+const INACTIVE_ROUTE = "px-4 py-2 text-gray-500 hover:text-indigo-800";
 
 export function Header() {
   const pathname = usePathname();
   return (
     <div>
-      <div className="flex justify-center bg-red-100 border-2 border-red-300 rounded-md">
-        {NAV_ITEMS.map((item) => (
-          <Link href={item.href} key={item.href}>
-            <div
-              className={pathname === item.href ? ACTIVE_ROUTE : INACTIVE_ROUTE}
-            >
-              {item.naviText}
-            </div>
-          </Link>
-        ))}
+      <div className="flex justify-normal  bg-gray-100 shadow-md">
+        <div className="flex justify-center  w-80">
+          {NAV_ITEMS.map((item) => (
+            <Link href={item.href} key={item.href}>
+              <div
+                className={
+                  pathname === item.href ? ACTIVE_ROUTE : INACTIVE_ROUTE
+                }
+              >
+                {item.naviText}
+              </div>
+            </Link>
+          ))}
+        </div>
       </div>
       <div className="py-4"></div>
     </div>
