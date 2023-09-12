@@ -2,7 +2,7 @@ import { Inter } from "next/font/google";
 import { Footer } from "@/components/Footer";
 import { Main } from "@/components/Main";
 
-import { ReactElement, ReactNode, useState, useCallback } from "react";
+import { ReactNode } from "react";
 const inter = Inter({ subsets: ["latin"] });
 
 type Props = {
@@ -18,28 +18,12 @@ type Props = {
   children: ReactNode;
 };
 
-export default function About(props: Props) {
-  const { count, doubleCount, isShow, handleClick, handleDisplay } = props;
-  const { text, array, handleChange, handleAdd } = props;
-
+export default function Index(props: Props) {
   return (
     <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
+      className={`flex min-h-screen flex-col items-center justify-between p-4 ${inter.className}`}
     >
-      <button onClick={handleClick}>count:{count}</button>
-      <h1>{doubleCount}</h1>
-      <button onClick={handleDisplay}>
-        display:{isShow ? <>表示</> : <>非表示</>}
-      </button>
-      {isShow ? <div>OK:{count}</div> : null}
-      <input type="text" value={text} onChange={handleChange}></input>
-      <button onClick={handleAdd}> addする</button>
-      <ul>
-        {array.map((item) => {
-          return <ol key={item}>{item}</ol>;
-        })}
-      </ul>
-
+      <h1>Next.jsで学ぶ</h1>
       <Main page="about"></Main>
       <button onClick={() => window.location.reload()}>Refresh</button>
       <Footer></Footer>

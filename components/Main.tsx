@@ -60,13 +60,9 @@ export function Main(props: Props) {
   }, []);
 
   return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
-    >
+    <main className={`flex  flex-col p-4 ${inter.className}`}>
       <Headline page={props.page} handleReduce={handleReduce}>
-        <code className="flex min-h-screen flex-col items-center justify-between p-24">
-          {items.length}
-        </code>
+        <code className="flex flex-col  p-4">{items.length}</code>
       </Headline>
       <Links items={items} handleReduce={handleReduce} />
       <div>アイテムの数：{items.length}</div>

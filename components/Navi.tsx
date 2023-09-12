@@ -20,9 +20,9 @@ const NAV_ITEMS: NavItem[] = [
     naviText: "Postへ移動する",
   },
   {
-    href: "/about",
-    label: "About",
-    naviText: "アバウトページへ移動する",
+    href: "/",
+    label: "top",
+    naviText: "トップページへ移動する",
   },
 ];
 
