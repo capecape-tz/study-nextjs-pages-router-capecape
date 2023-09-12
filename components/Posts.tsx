@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { usePosts } from "@/hooks/usePosts";
 
 export default function Posts() {
@@ -25,7 +26,9 @@ export default function Posts() {
       {data.map((post: any) => {
         return (
           <li key={post.id}>
-            {post.id}:{post.title}
+            <Link href={`/post/${post.id}`}>
+              {post.id}:{post.title}
+            </Link>
           </li>
         );
       })}
