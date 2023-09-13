@@ -20,7 +20,6 @@ export default function Post(props: Props) {
     isLoading: userIsLoading,
   } = useUser(postUserId);
 
-  console.log("aaa");
   if (postIsLoading || userIsLoading) {
     return <div>ローディング中です</div>;
   }
