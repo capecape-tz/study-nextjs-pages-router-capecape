@@ -1,5 +1,5 @@
 import useSWR from "swr";
-import { Post } from "@/hooks/usePost";
+import { Post } from "@/types/Post";
 import { fetcher } from "@/utils/fetcher";
 
 export function usePosts() {
