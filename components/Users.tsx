@@ -21,16 +21,19 @@ export default function Users() {
   console.log(data);
 
   return (
-    <ol>
+    <ul className="grid grid-cols-2 gap-4">
       {data.map((user) => {
         return (
           <li key={user.id}>
             <Link href={`/users/${user.id}`}>
-              {user.id}:{user.name}:{user.email}:{user.phone}
+              <div className="block p-2 shadow rounded hover:bg-gray-100">
+                <h1 className="text-xl font-bold">{user.name}</h1>
+                <div className="text-lg truncate">{user.email}</div>
+              </div>
             </Link>
           </li>
         );
       })}
-    </ol>
+    </ul>
   );
 }

@@ -21,16 +21,18 @@ export function Comments() {
   console.log(data);
 
   return (
-    <ol>
+    <ul className="space-y-2">
       {data.map((comment) => {
         return (
-          <li key={comment.id}>
+          <li className="border-b pb-2 group" key={comment.id}>
             <Link href={`/comments/${comment.id}`}>
-              {comment.id}:{comment.postId}:{comment.name}:{comment.email}
+              <div className="block rounded group-hover:text-blue-500">
+                {comment.body}
+              </div>
             </Link>
           </li>
         );
       })}
-    </ol>
+    </ul>
   );
 }

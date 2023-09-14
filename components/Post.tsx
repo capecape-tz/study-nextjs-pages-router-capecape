@@ -1,6 +1,7 @@
 import { useComments, useCommentsByPostId } from "@/hooks/useFetchArray";
 import { usePost } from "@/hooks/usePost";
 import { useUser } from "@/hooks/useUser";
+import Link from "next/link";
 
 type Props = {
   id: number | null;
@@ -44,42 +45,30 @@ export default function Post(props: Props) {
 
   return (
     <div>
-      <h1>
-        <div>{post?.id}</div>
-
-        {post?.title}
-      </h1>
-      <p>{post?.body}</p>
       {user?.name ? (
-        <h1>
+        <p>
           created by
-          <div>
-            {user?.name}
-            <a> </a>
-            {user?.id}
-          </div>
-        </h1>
+          {user?.name}
+          <a> </a>
+          {user?.id}
+        </p>
       ) : null}
-      <div>--------------------- *** comments *** ---------------------</div>
-      <ul>
+      <h1 className="text-3xl font-bold pb-2">{post?.title}</h1>
+      <p className="text-xl text-gray-700 pb-10">{post?.body}</p>
+      <h2 className="text-xl font-bold">コメント一覧</h2>
+      <ul className="space-y-2">
         {comments
-          ? comments
-              .filter((comment) => {
-                return comment.postId === postId;
-              })
-              .map((comment) => {
-                return (
-                  <>
-                    <li key={comment.id}>
-                      <div>{comment.id}</div>
-                      <h1>
-                        {comment.name} :{comment.email}
-                      </h1>
-                      <p>{comment.body}</p>
-                    </li>
-                  </>
-                );
-              })
+          ? comments.map((comment) => {
+              return (
+                <li className="border-b pb-2 group" key={comment.id}>
+                  <Link href={`/comments/${comment.id}`}>
+                    <div className="block rounded group-hover:text-blue-500">
+                      {comment.body}
+                    </div>
+                  </Link>
+                </li>
+              );
+            })
           : null}
       </ul>
     </div>

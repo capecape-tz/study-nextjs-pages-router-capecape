@@ -29,18 +29,13 @@ export function Comment(props: Props) {
 
   return (
     <div>
-      <h1>
-        <div>{comment?.id}</div>
-        <div>{comment.postId}</div>
-        {comment?.name}
-      </h1>
-      <p>{comment?.body}</p>
-      <h2>元の記事</h2>
+      <h1 className="text-3xl font-bold">{comment.body}</h1>
+      <div>
+        Created by {comment.name} ({comment.email})
+      </div>
+      <h2 className="text-xl font-bold pt-4">元の記事</h2>
       <Link href={"/posts/" + post.id}>
-        <p>
-          {post.id} {post.title}
-        </p>
-        <p>{post.body}</p>
+        <p className="text-lg hover:text-blue-500">{post.body}</p>
       </Link>
     </div>
   );
