@@ -3,28 +3,33 @@ import { Header } from "@/components/Header";
 
 import { ReactNode } from "react";
 import Users from "@/components/Users";
+import { SWRConfig } from "swr";
 
 const inter = Inter({ subsets: ["latin"] });
 
-type Props = {
-  count: number;
-  doubleCount: number;
-  isShow: boolean;
-  handleClick: () => void;
-  handleDisplay: () => void;
-  text: string;
-  array: string[];
-  handleChange: (e: any) => void;
-  handleAdd: () => void;
-  page: string;
-  children: ReactNode;
+export const getServerSideProps = async () => {
+  //ユーザー情報の取得
+  const USERS_API_URL = "https://jsonplaceholder.typicode.com/users";
+  const users = await fetch(USERS_API_URL);
+  const usersData = await users.json();
+
+  return {
+    props: {
+      fallback: {
+        [USERS_API_URL]: usersData,
+      },
+    },
+  };
 };
 
-export default function Home(props: Props) {
+export default function UsersPage(props: any) {
+  const fallback = props;
   return (
     <>
-      <Header></Header>
-      <Users></Users>
+      <SWRConfig value={{ fallback: fallback }}>
+        <Header></Header>
+        <Users></Users>
+      </SWRConfig>
     </>
   );
 }

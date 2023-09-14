@@ -5,15 +5,20 @@ import { SWRConfig } from "swr";
 
 export const getServerSideProps = async (ctx: any) => {
   const { id } = ctx.query;
-
-  const API_URL = `https://jsonplaceholder.typicode.com/users/${id}`;
-  const user = await fetch(API_URL);
-  const data = await user.json();
+  //ユーザー情報の取得
+  const USER_API_URL = `https://jsonplaceholder.typicode.com/users/${id}`;
+  const user = await fetch(USER_API_URL);
+  const userData = await user.json();
+  //ユーザーの投稿の取得
+  const POSTS_API_URL = "https://jsonplaceholder.typicode.com/posts";
+  const posts = await fetch(USER_API_URL);
+  const postsData = await posts.json();
 
   return {
     props: {
       fallback: {
-        [API_URL]: data,
+        [USER_API_URL]: userData,
+        [POSTS_API_URL]: postsData,
       },
     },
   };

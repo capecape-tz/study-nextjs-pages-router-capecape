@@ -3,6 +3,7 @@ import { fetcher } from "@/utils/fetcher";
 import { Comment } from "@/types/Comment";
 import { Post } from "@/types/Post";
 import { User } from "@/types/User";
+import useSWRImmutable from "swr/immutable";
 
 const useFetch: <T>(url: string | null) => {
   data: T[];
@@ -10,11 +11,7 @@ const useFetch: <T>(url: string | null) => {
   isLoading: boolean;
   isEmpty: boolean;
 } = (url: string | null) => {
-  const {
-    data: p,
-    error,
-    isLoading,
-  } = useSWR(url !== null ? url : null, fetcher);
+  const { data: p, error, isLoading } = useSWR(url, fetcher);
   const data = p === undefined ? null : p;
   return { data: data, error, isLoading, isEmpty: data && data.length === 0 };
 };
@@ -30,9 +27,18 @@ export function useCommentsByPostId(postId: number | null) {
 }
 
 export function usePosts() {
-  return useFetch<Post>(`${API_URL}/posts`);
+  return useFetch<Post>("https://jsonplaceholder.typicode.com/posts");
 }
 
 export function useUsers() {
-  return useFetch<User>(`${API_URL}/users/`);
+  const {
+    data: p,
+    error,
+    isLoading,
+  } = useSWRImmutable<User[]>(
+    "https://jsonplaceholder.typicode.com/users",
+    fetcher
+  );
+  const data = p === undefined ? null : p;
+  return { data, error, isLoading, isEmpty: data && data.length === 0 };
 }
