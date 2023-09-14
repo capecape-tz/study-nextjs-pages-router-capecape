@@ -1,4 +1,5 @@
 import Link from "next/link";
+
 import { usePathname } from "next/navigation";
 
 type NavItem = {
@@ -29,29 +30,26 @@ const NAV_ITEMS: NavItem[] = [
   },
 ];
 
-const ACTIVE_ROUTE = "px-4 py-2 text-gray-300";
-const INACTIVE_ROUTE = "px-4 py-2 text-gray-500 hover:text-indigo-800";
+const ACTIVE_ROUTE = "inline-block px-4 py-2 text-xl text-gray-300";
+const INACTIVE_ROUTE =
+  "inline-block px-4 py-2 text-gray-500 focus:text-blue-500 text-xl hover:text-blue-500";
 
 export function Header() {
   const pathname = usePathname();
   return (
-    <div>
-      <div className="flex justify-normal  bg-gray-100 shadow-md ">
-        <div className="flex justify-center  w-fit">
-          {NAV_ITEMS.map((item) => (
-            <Link href={item.href} key={item.href}>
-              <div
-                className={
-                  item.href === pathname ? ACTIVE_ROUTE : INACTIVE_ROUTE
-                }
-              >
-                {item.naviText}
-              </div>
-            </Link>
-          ))}
-        </div>
-      </div>
+    <>
+      <header className="flex justify-center w-full p-2 border-b">
+        {NAV_ITEMS.map((item) => (
+          <Link href={item.href} key={item.href}>
+            <div
+              className={item.href === pathname ? ACTIVE_ROUTE : INACTIVE_ROUTE}
+            >
+              {item.naviText}
+            </div>
+          </Link>
+        ))}
+      </header>
       <div className="py-4"></div>
-    </div>
+    </>
   );
 }

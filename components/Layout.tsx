@@ -11,7 +11,9 @@ export function Layout(props: Props) {
         <link rel="icon" href="/favicon.ico" />
         <title>Next.jsで学ぶReact講座を学習中</title>
       </Head>
-      <div>{props.children}</div>
+      <div className="flex flex-col items-center m-0 max-w-2xl min-h-screen px-2">
+        {props.children}
+      </div>
     </>
   );
 }
