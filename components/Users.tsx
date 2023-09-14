@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { useUsers } from "@/hooks/useUsers";
+import { useUsers } from "@/hooks/useFetchArray";
 
 export default function Users() {
-  const { data, error, isLoading } = useUsers();
+  const { data, error, isLoading, isEmpty } = useUsers();
 
   if (isLoading) {
     return <div>ローディング中です</div>;
@@ -12,7 +12,7 @@ export default function Users() {
     return <div>{error}</div>;
   }
 
-  if (data === undefined) {
+  if (isEmpty) {
     console.log("test");
     console.log(data);
     return <div>データは空です。</div>;

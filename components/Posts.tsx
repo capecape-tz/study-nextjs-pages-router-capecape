@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { usePosts } from "@/hooks/usePosts";
+import { usePosts } from "@/hooks/useFetchArray";
 
 export default function Posts() {
-  const { data, error, isLoading } = usePosts();
+  const { data, error, isLoading, isEmpty } = usePosts();
 
   console.log("aaa");
   if (isLoading) {
@@ -13,7 +13,7 @@ export default function Posts() {
     return <div>{error}</div>;
   }
 
-  if (data === undefined) {
+  if (isEmpty) {
     console.log("test");
     console.log(data);
     return <div>データは空です。</div>;

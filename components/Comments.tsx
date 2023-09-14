@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { useComments } from "@/hooks/useComments";
+import { useComments } from "@/hooks/useFetchArray";
 
 export function Comments() {
-  const { data, error, isLoading } = useComments();
+  const { data, error, isLoading, isEmpty } = useComments();
 
   if (isLoading) {
     return <div>ローディング中です</div>;
@@ -12,7 +12,7 @@ export function Comments() {
     return <div>{error}</div>;
   }
 
-  if (data === undefined) {
+  if (isEmpty) {
     console.log("test");
     console.log(data);
     return <div>データは空です。</div>;
