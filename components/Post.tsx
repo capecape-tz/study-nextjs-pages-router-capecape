@@ -63,22 +63,24 @@ export default function Post(props: Props) {
       <div>--------------------- *** comments *** ---------------------</div>
       <ul>
         {comments
-          .filter((comment) => {
-            return comment.postId === postId;
-          })
-          .map((comment) => {
-            return (
-              <>
-                <li key={comment.id}>
-                  <div>{comment.id}</div>
-                  <h1>
-                    {comment.name} :{comment.email}
-                  </h1>
-                  <p>{comment.body}</p>
-                </li>
-              </>
-            );
-          })}
+          ? comments
+              .filter((comment) => {
+                return comment.postId === postId;
+              })
+              .map((comment) => {
+                return (
+                  <>
+                    <li key={comment.id}>
+                      <div>{comment.id}</div>
+                      <h1>
+                        {comment.name} :{comment.email}
+                      </h1>
+                      <p>{comment.body}</p>
+                    </li>
+                  </>
+                );
+              })
+          : null}
       </ul>
     </div>
   );
