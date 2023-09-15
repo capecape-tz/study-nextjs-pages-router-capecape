@@ -25,7 +25,7 @@ export function Comments() {
       {data.map((comment) => {
         return (
           <li className="border-b pb-2 group" key={comment.id}>
-            <Link href={`/comments/${comment.id}`}>
+            <Link href={`/comments/${comment.id}`} prefetch={false}>
               <div className="block rounded group-hover:text-blue-500">
                 {comment.body}
               </div>
