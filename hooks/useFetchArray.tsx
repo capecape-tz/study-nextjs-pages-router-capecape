@@ -19,7 +19,7 @@ const useFetch: <T>(url: string | null) => {
 const API_URL = "https://jsonplaceholder.typicode.com";
 
 export function useComments() {
-  return useFetch<Comment>(`${API_URL}/comments`);
+  return useFetch<Comment>("https://jsonplaceholder.typicode.com/comments");
 }
 
 export function useCommentsByPostId(postId: number | null) {

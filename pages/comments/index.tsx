@@ -1,30 +1,32 @@
 import { Inter } from "next/font/google";
 import { Header } from "@/components/Header";
 
-import { ReactNode } from "react";
 import { Comments } from "@/components/Comments";
+import { SWRConfig } from "swr";
 
 const inter = Inter({ subsets: ["latin"] });
 
-type Props = {
-  count: number;
-  doubleCount: number;
-  isShow: boolean;
-  handleClick: () => void;
-  handleDisplay: () => void;
-  text: string;
-  array: string[];
-  handleChange: (e: any) => void;
-  handleAdd: () => void;
-  page: string;
-  children: ReactNode;
+export const getStaticProps = async () => {
+  //ユーザー情報の取得
+  const COMMENTS_API_URL = "https://jsonplaceholder.typicode.com/comments";
+  const comments = await fetch(COMMENTS_API_URL);
+  const commentsData = await comments.json();
+
+  return {
+    props: {
+      fallback: {
+        [COMMENTS_API_URL]: commentsData,
+      },
+    },
+  };
 };
 
-export default function Home(props: Props) {
+export default function Home(props: any) {
+  const { fallback } = props;
   return (
-    <>
+    <SWRConfig value={{ fallback: fallback }}>
       <Header></Header>
       <Comments></Comments>
-    </>
+    </SWRConfig>
   );
 }
