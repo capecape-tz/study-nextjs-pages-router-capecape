@@ -2,15 +2,16 @@ import { Header } from "@/components/Header";
 import { useRouter } from "next/router";
 import User from "@/components/User";
 import { SWRConfig } from "swr";
+import { API_URL } from "@/utils/const";
 
 export const getServerSideProps = async (ctx: any) => {
   const { id } = ctx.query;
   //ユーザー情報の取得
-  const USER_API_URL = `https://jsonplaceholder.typicode.com/users/${id}`;
+  const USER_API_URL = `${API_URL}/users/${id}`;
   const user = await fetch(USER_API_URL);
   const userData = await user.json();
   //ユーザーの投稿の取得
-  const POSTS_API_URL = "https://jsonplaceholder.typicode.com/posts";
+  const POSTS_API_URL = `${API_URL}/posts`;
   const posts = await fetch(USER_API_URL);
   const postsData = await posts.json();
 

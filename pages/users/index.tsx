@@ -1,15 +1,15 @@
 import { Inter } from "next/font/google";
 import { Header } from "@/components/Header";
 
-import { ReactNode } from "react";
 import Users from "@/components/Users";
 import { SWRConfig } from "swr";
+import { API_URL } from "@/utils/const";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const getServerSideProps = async () => {
   //ユーザー情報の取得
-  const USERS_API_URL = "https://jsonplaceholder.typicode.com/users";
+  const USERS_API_URL = `${API_URL}/users`;
   const users = await fetch(USERS_API_URL);
   const usersData = await users.json();
 

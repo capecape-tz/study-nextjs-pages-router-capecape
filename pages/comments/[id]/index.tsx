@@ -3,11 +3,10 @@ import { useRouter } from "next/router";
 import { Comment as CommentConponent } from "@/components/Comment";
 import { SWRConfig } from "swr";
 import { Comment } from "@/types/Comment";
+import { API_URL } from "@/utils/const";
 
 export const getStaticPaths = async () => {
-  const comments = await fetch(
-    "https://jsonplaceholder.typicode.com/comments?_limit=5"
-  );
+  const comments = await fetch(`${API_URL}/comments?_limit=5`);
   const commentsData: Comment[] = await comments.json();
   const paths = commentsData.map((comment) => ({
     params: { id: comment.id.toString() },
@@ -17,7 +16,7 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async (ctx: any) => {
   const { id } = ctx.params;
-  const COMMENT_API_URL = `https://jsonplaceholder.typicode.com/comments/${id}`;
+  const COMMENT_API_URL = `${API_URL}/comments/${id}`;
   const comment = await fetch(COMMENT_API_URL);
   if (!comment.ok) {
     return {
